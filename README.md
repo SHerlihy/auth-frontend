@@ -1,4 +1,4 @@
-# Micro Frontend for Authentication Service
+# Frontend for Authentication Service
 
 Made with:
 - TypeScript
