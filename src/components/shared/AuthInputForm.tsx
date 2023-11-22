@@ -1,6 +1,3 @@
-import CustomInput from "./CustomInput"
-import { IoIosLogIn } from "react-icons/io"
-
 type InputField = {
     type: string,
     name: string,
@@ -27,11 +24,15 @@ const AuthInputForm = ({title, handleSubmit, inputFields}:AuthInputFormProps) =>
             >
                 <p>{title}</p>
                 {inputFields.map(({type,name,label}, idx)=>{
-                return (<CustomInput key={idx} type={type} name={name} label={label} />)
+                return (
+                    <>
+                    <label for={name}>{label}</label>
+                    <input key={idx} type={type} name={name}/>
+                    </>
+                )
                 })}
                 <button type="submit" >
                     {title}
-                    <IoIosLogIn/>
                 </button>
             </form>
     )
