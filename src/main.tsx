@@ -1,20 +1,30 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.css'
-import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext.tsx'
 import axios from 'axios'
+import { Router, RouterProvider } from '@tanstack/react-router'
+import { routeTree } from './App.tsx'
 
 axios.defaults.baseURL = import.meta.env.VITE_AUTH_BACKEND_URL
 axios.defaults.withCredentials = true
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+const router = new Router({
+    routeTree: routeTree
+})
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
+
+const rootElement = document.getElementById('root')!
+
+if (!rootElement.innerHTML) {
+    const root = ReactDOM.createRoot(rootElement)
+    root.render(
         <AuthProvider>
-            <BrowserRouter>
-                    <App />
-            </BrowserRouter>
+            <RouterProvider router={router} />
         </AuthProvider>
-  </React.StrictMode>,
-)
+    )
+}
