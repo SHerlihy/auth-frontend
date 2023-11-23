@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    min-height: fit-content;
+    min-width: fit-content;
+}
+
 html,
 body {
   margin: 0;
@@ -15,7 +21,7 @@ main {
     align-items: "center";
 }
 
-.nav-link {
+.header-link-button {
   font-weight: 600;
   text-transform: uppercase;
   margin-right: 10px;
@@ -24,4 +30,18 @@ main {
   border-radius: 10px;
   text-decoration: none;
   letter-spacing: 1px;
+}
+
+#header {
+    position: sticky;
+    top: 50vh;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-end;
+    align-content:center;
+
+    background-color: rgb(10, 20, 90);
+    list-style-type: none;
 }

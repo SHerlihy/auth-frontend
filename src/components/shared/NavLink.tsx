@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-type Props = {
+export type NavLinkProps = {
     to: string;
     bg: string;
     text: string;
@@ -8,17 +8,14 @@ type Props = {
     onClick?: (...args:unknown[])=>Promise<void>;
 }
 
-const NavLink = (props: Props) => {
+export const NavLink = (props: NavLinkProps) => {
     return (
     <Link
         onClick={props.onClick}
         to={props.to}
         style={{background: props.bg,color:props.textColor}}
-        className="nav-link"
     >
             {props.text}
     </Link>
     )
 }
-
-export default NavLink
