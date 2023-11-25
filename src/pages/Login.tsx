@@ -1,10 +1,13 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 import AuthInputForm from "../components/shared/AuthInputForm";
+import { useNavigate } from "@tanstack/react-router";
 
 const Login = () => {
-    const navigate=useNavigate()
+    const navigate=useNavigate({
+        from: "/login"
+    })
+
     const auth = useAuth()
 
     const handleSubmit = async(e:React.FormEvent<HTMLFormElement>) => {
@@ -14,7 +17,9 @@ const Login = () => {
         const password = formData.get("password") as string
         try {
             await auth?.login(email,password)
-            navigate("/")
+            navigate({
+                to: "/"
+            })
         } catch (error) {
             console.log(error)
         }

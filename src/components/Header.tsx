@@ -1,47 +1,40 @@
-import { AppBar, Toolbar } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
-import NavLink from "./shared/NavLink";
+import HeaderLinkButton from "./shared/HeaderLinkButton";
 
 const Header = () => {
     const auth = useAuth()
 
     return (
-        <AppBar sx={{bgcolor: "transparent", position: "static", boxShadow: "none"}}>
-            <Toolbar sx={{display: "flex"}}>
-                <div>
-                    {!auth ? null : (
-                        auth.user ? (
-                        <>
-                            <NavLink
-                            bg="#51538f"
-                            to="/"
-                            text="Logout"
-                            textColor="#000"
-                            onClick={auth.logout}
-                            />
-                        </>
-                        ):(
-                        <>
-                            <NavLink
-                            bg="#00fffc"
-                            to="/login"
-                            text="Login"
-                            textColor="#fff"
-                            onClick={auth.login}
-                            />
-                            <NavLink
-                            bg="#51538f"
-                            to="/signup"
-                            text="Signup"
-                            textColor="#000"
-                            onClick={auth.signup}
-                            />
-                        </>
-                        )
-                    )}
-                </div>
-            </Toolbar>
-        </AppBar>
+        <ul id="header">
+           {!auth ? null : (
+               auth.user ? (
+                    <HeaderLinkButton
+                   bg="#51538f"
+                   to="/"
+                   text="Logout"
+                   textColor="#000"
+                   onClick={auth.logout}
+                    />
+               ):(
+               <>
+                   <HeaderLinkButton
+                   bg="#00fffc"
+                   to="/login"
+                   text="Login"
+                   textColor="#fff"
+                   onClick={auth.login}
+                   />
+                   <HeaderLinkButton
+                   bg="#51538f"
+                   to="/signup"
+                   text="Signup"
+                   textColor="#000"
+                   onClick={auth.signup}
+                   />
+               </>
+               )
+           )}
+        </ul>
     )
 }
 
